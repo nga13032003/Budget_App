@@ -7,7 +7,7 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
-import BudgetTable from './components/BudgetTable/BudgetTable'; 
+import BudgetTable from './components/BudgetTable'; 
 import './App.css'; 
 
 const { Header, Sider, Content } = Layout;
@@ -15,7 +15,7 @@ const { Header, Sider, Content } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer},
   } = theme.useToken();
 
   return (
@@ -56,22 +56,10 @@ const App = () => {
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
+            
           />
         </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
+        <Content>
           <BudgetTable/>
         </Content>
       </Layout>
