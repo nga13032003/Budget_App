@@ -7,16 +7,21 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
-import BudgetTable from './components/BudgetTable'; 
+import BudgetTable from './components/BudgetTable/BudgetTable';
 import './App.css'; 
 
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedMenuKey, setSelectedMenuKey] = useState('2'); // Default to 'Budget'
   const {
-    token: { colorBgContainer},
+    token: { colorBgContainer },
   } = theme.useToken();
+
+  const handleMenuClick = ({ key }) => {
+    setSelectedMenuKey(key);
+  };
 
   return (
     <Layout>
@@ -25,7 +30,8 @@ const App = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={['2']}
+          onClick={handleMenuClick}
           items={[
             {
               key: '1',
@@ -34,13 +40,13 @@ const App = () => {
             },
             {
               key: '2',
-              icon: <DollarCircleFilled/>,
+              icon: <DollarCircleFilled />,
               label: 'Budget',
             },
             {
               key: '3',
               icon: <UploadOutlined />,
-              label: 'nav 3',
+              label: 'Budget ss2',
             },
           ]}
         />
@@ -56,11 +62,10 @@ const App = () => {
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            
           />
         </Header>
         <Content>
-          <BudgetTable/>
+          {selectedMenuKey === '2' && <BudgetTable />}
         </Content>
       </Layout>
     </Layout>
